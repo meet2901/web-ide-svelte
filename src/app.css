@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-200 antialiased;
+    font-feature-settings: "liga" 1, "kern" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  * {
+    @apply border-slate-800;
+    box-sizing: border-box;
+  }
+  
+  ::selection {
+    @apply bg-blue-500/30 text-white;
+  }
+  
+  input, textarea, select {
+    font-family: inherit;
+  }
+  
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+  
+  /* Better focus states */
+  :focus-visible {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+  }
+}
+
+:root {
+  --topnav-height: 48px;
+  --statusbar-height: 24px;
+  --activitybar-width: 48px;
+  --sidebar-width: 260px;
+  --rightpanel-width: 320px;
+  --bottompanel-height: 220px;
+}
+
+html, body, #app {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Inter', 'Segoe UI', -apple-system, sans-serif;
+}
+
+/* IDE-Native Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0f1a;
+  border-left: 1px solid #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border: 1px solid #1e293b;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Monaco Editor Specific Scrollbars */
+.monaco-scrollable-element > .scrollbar {
+  background: transparent !important;
+}
+
+.monaco-scrollable-element > .scrollbar > .slider {
+  background: #334155 !important;
+  border: 1px solid #1e293b !important;
+  border-radius: 0 !important;
+}
+
+.monaco-scrollable-element > .scrollbar > .slider:hover {
+  background: #475569 !important;
+}
+
+/* IDE Panel Scrollbars - Clean and functional */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-ide::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollbar-ide::-webkit-scrollbar-track {
+  background: #0a0f1a;
+  border: none;
+}
+
+.scrollbar-ide::-webkit-scrollbar-thumb {
+  background: #334155;
+  border: 1px solid #1e293b;
+  border-radius: 0;
+}
+
+.scrollbar-ide::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* IDE-First UI System - Panels as functional surfaces, not cards */
+@layer utilities {
+  /* IDE Panel Base - No decorative styling */
+  .ide-panel-base {
+    background-color: #0f172a;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* IDE Surface - Clean, functional backgrounds */
+  .ide-surface {
+    background-color: #0f172a;
+    border: 1px solid #1e293b;
+  }
+  
+  .ide-surface-secondary {
+    background-color: #0a0f1a;
+    border: 1px solid #1e293b;
+  }
+  
+  /* Subtle IDE Interactions - No distracting animations */
+  .transition-ide {
+    transition: background-color 0.1s ease, border-color 0.1s ease;
+  }
+  
+  .hover-ide:hover {
+    background-color: #1e293b;
+  }
+  
+  .active-ide:active {
+    background-color: #334155;
+  }
+  
+  .gradient-border {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #22d3ee);
+    padding: 1px;
+  }
+  
+  .glass {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Typography improvements */
+  .heading-primary {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #f1f5f9;
+  }
+  
+  .heading-secondary {
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: #cbd5e1;
+  }
+  
+  .text-muted {
+    color: #94a3b8;
+  }
+  
+  .text-subtle {
+    color: #64748b;
+  }
+  
+  /* IDE-Specific Typography */
+  .ide-label {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #cbd5e1;
+    letter-spacing: -0.01em;
+  }
+  
+  .ide-text {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13px;
+    color: #e2e8f0;
+  }
+  
+  /* Divider enhancements */
+  .divider-light {
+    border-color: #334155;
+  }
+  
+  .divider-strong {
+    border-color: #475569;
+  }
+  
+  /* Status indicators */
+  .status-online {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+  }
+  
+  .status-offline {
+    background: #64748b;
+  }
+}
+
+/* Enhanced ripple effect */
+.ripple {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+}
+
+.ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Enhanced tooltip styling */
+.tooltip-custom {
+  position: relative;
+}
+
+.tooltip-custom::before {
+  content: attr(data-tip);
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 8px;
+  padding: 8px 14px;
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  color: #f1f5f9;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  z-index: 1000;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 0 0 1px #334155;
+  border: 1px solid #334155;
+}
+
+.tooltip-custom:hover::before {
+  opacity: 1;
+  transform: translateY(-50%) translateX(4px);
+}
